@@ -15,4 +15,11 @@ Route::group(['namespace' => 'User\Auth', 'prefix' => 'user'], function () {
     Route::get('auth', 'AuthController@showAuthForm');
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
+    Route::get('logout', 'AuthController@logout');
+    
+    Route::get('password/reset/{token?}', 'PasswordController@showResetForm');
+    Route::post('password/email', 'PasswordController@sendResetLinkEmail');
+    Route::post('password/reset', 'PasswordController@reset');
 });
+
+

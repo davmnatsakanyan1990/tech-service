@@ -17,6 +17,9 @@ class PasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
+    protected $guard = 'user';
+    protected $broker = 'users';
+    protected $linkRequestView = 'user.auth.passwords.email';
 
     use ResetsPasswords;
 

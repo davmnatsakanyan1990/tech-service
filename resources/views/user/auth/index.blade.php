@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="row login-row">
-            @if(old('type') && old('type') == 'login')
+            @if(old('type') != 'register')
                 @if(count($errors) > 0)
                     @foreach($errors->all() as $error)
                         <p>{{ $error }}</p>
@@ -38,7 +38,6 @@
             @endif
             <form action="{{ url('user/login') }}" method="post">
                 {{ csrf_field() }}
-                <input type="hidden" name="type" value="login">
                 <div class="col-sm-6">
                     <div class="login-here">
                         <img src="{{ asset('images/login-signup.png') }}" alt="logins-up">
@@ -49,8 +48,8 @@
                     </div>
                     <div class="inputs-gr">
                         <div class="input-item">
-                            <input name="username" type="name" id="login-name" placeholder="username">
-                            <label for="login-name"><img src="{{ asset('images/icons/user.png') }}" alt="user.png"></label>
+                            <input name="email" value="{{ old('email') }}" type="email" id="login-email" placeholder="e-mail">
+                            <label for="login-email"><img src="{{ asset('images/icons/user.png') }}" alt="user.png"></label>
                         </div>
 
                         <div class="input-item">
@@ -64,9 +63,9 @@
 
                         <div class="logedin">
                             <label for="logedin">
-                                <input type="checkbox" id="logedin"> keep me logged in
+                                <input type="checkbox" id="logedin" name="remember"> keep me logged in
                             </label>
-                            <a href="#" title="click to reset your password">Forgot your password?</a>
+                            <a href="{{ url('user/password/reset') }}" title="click to reset your password">Forgot your password?</a>
                             <p>... Or login width :</p>
                         </div>
 
@@ -79,7 +78,17 @@
                         </div>
                     </div>
                 </div>
-
+            </form>
+                @if(old('type') && old('type') == 'register')
+                    @if(count($errors) > 0)
+                        @foreach($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    @endif
+                @endif
+            <form action="{{ url('user/register') }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="type" value="register">
                 <div class="col-sm-6">
                     <div class="signup-here">
                         <img src="{{ asset('images/sign-up.png') }}" alt="s-up">
@@ -90,26 +99,26 @@
                         <div class="inputs-gr">
                             <div class="name-sername">
                                 <div class="input-item">
-                                    <input type="text" placeholder="first name">
+                                    <input name="first_name" type="text" placeholder="first name">
                                 </div>
                                 <div class="input-item">
-                                    <input type="text" placeholder="last name">
+                                    <input name="last_name" type="text" placeholder="last name">
                                 </div>
                             </div>
                         </div>
                         <div class="input-item">
-                            <input type="mail" placeholder="e-mail" id="y-mail">
+                            <input name="email" type="email" placeholder="e-mail" id="y-mail">
                             <label for="y-mail"><img src="{{ asset('images/icons/letter.png') }}" alt="letter.png"></label>
                         </div>
                         <div class="input-item">
-                            <input type="password" id="regpass1" placeholder="password">
+                            <input name="password" type="password" id="regpass1" placeholder="password">
                             <label for="regpass1"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
                         <div class="input-item">
-                            <input type="password" id="regpass2" placeholder="confirm password">
+                            <input name="password_confirmation" type="password" id="regpass2" placeholder="confirm password">
                             <label for="regpass2"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
-                        <button>sign up</button>
+                        <button type="submit">sign up</button>
                     </div>
                 </div>
             </form>
