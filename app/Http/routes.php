@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'User\Auth', 'prefix' => 'user'], function () {
+    Route::get('auth', 'AuthController@showAuthForm');
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
 });

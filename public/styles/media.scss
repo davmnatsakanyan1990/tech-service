@@ -1,0 +1,88 @@
+//
+// responsive css
+// --------------------------------------------
+
+@media screen and (max-width: 1600px){
+	.div-1190{
+		max-width: 1300px;
+	}
+}
+
+@media screen and (max-width: 1200px){
+	.div-1190{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 767px){
+	.testimon-cont{
+		.testimon-right{
+			margin-top: 35px;
+		}
+	}
+	#ww-do-section a{
+		margin-bottom: 40px;
+	} 
+} 
+
+@media screen and (max-width: 480px){
+	.serv-we-provide{
+		p{
+			padding: 0;
+		}
+	} 
+ 	.inner-cont{
+		form{
+			padding-bottom: 15px;
+		}
+ 	}
+	.form-buttons{
+		.col-sm-6{
+			&:first-child{
+				.inp-all-divs{
+					max-width: 100%;
+					button{
+						display: block;
+						width: 100%;
+						margin-top: 10px;
+					}
+				}
+			}
+			&:last-child{
+				.inp-all-divs{
+					button{
+						width: 100%;
+						margin-top: 10px;
+						display: block;
+					}
+				}
+			}
+		}
+	}
+} 
+
+@media screen and (max-width: 320px){
+	.testimon-cont{
+		.testimon-right{
+			padding: 20px;
+		} 
+	} 
+	.serv-we-provide h2{
+		font-size: 26px;
+	}
+	.login-social{
+		button{
+			font-size: 13px;
+			i{
+				padding-right: 7px;
+			}
+		}
+	}
+	.signup-here h3{
+		margin-top: 90px;
+	}
+} 
+
+
+
+ 

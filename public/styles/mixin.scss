@@ -1,0 +1,38 @@
+/*
+	cdCss functions
+	--------------------
+*/
+
+@mixin middle() {
+	&:after {
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    }
+}
+
+@mixin clear() {
+	&:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+}
+
+$main-red: #ED644B;
+$main-gray: #494949;
+
+@mixin center($extend: true) {
+    @if $extend {
+        @extend %center;
+    } @else { 
+        left: 0%;
+        top: 0%;
+        transform: translateX(0%) translateY(0%);
+    }
+}
+
+%center {
+    @include center($extend: false);
+}
