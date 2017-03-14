@@ -680,10 +680,10 @@ footer{
 		font-size: 23px;
 		color: $main-red;
 	}
-	p{
+	  p.fill-in-f-p{
 		line-height: 28px;
 		color: #fff;
-	}
+	} 
 	img{
 		margin-right: 15px;
 		float: left;
@@ -746,18 +746,21 @@ footer{
 		}
 	}
 	.name-sername{
-		display: flex;
-		-webkit-justify-content: space-between;
-			justify-content: space-between;
-		div{
-			display: inline-block;
+		div:first-child{
+			margin-right: 2%;	
 		}
 		.input-item{
 			position: relative;
-			width: 100%;
-			margin-top: 0;
+			float: left;
+			width: 49%; 
+			margin-top: 0;  
 		}
 	}
 }
 
-
+.fillin-err{
+	color: $main-red;
+	font-size: 14px;
+	margin-top: 4px; 
+}
+ 

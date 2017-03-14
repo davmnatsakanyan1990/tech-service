@@ -123,15 +123,8 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'email' => 'user.auth.emails.password',
-            'table' => 'users_password_resets',
-            'expire' => 60,
-        ],
-
-        'admins' => [
-            'provider' => 'admins',
-            'email' => 'admin.auth.emails.password',
-            'table' => 'admins_password_resets',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
             'expire' => 60,
         ],
     ],
