@@ -895,7 +895,11 @@ footer .copyright p {
   color: #ED644B;
 }
 
+<<<<<<< HEAD
 .signup-here p.fill-in-f-p {
+=======
+.signup-here p {
+>>>>>>> 47ea94820546b481741ab0608df863b923204cb0
   line-height: 28px;
   color: #fff;
 }
@@ -968,12 +972,24 @@ footer .copyright p {
   transition: .7s;
 }
 
+<<<<<<< HEAD
 .signup-here .name-sername div:first-child {
   margin-right: 2%;
+=======
+.signup-here .name-sername {
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.signup-here .name-sername div {
+  display: inline-block;
+>>>>>>> 47ea94820546b481741ab0608df863b923204cb0
 }
 
 .signup-here .name-sername .input-item {
   position: relative;
+<<<<<<< HEAD
   float: left;
   width: 49%;
   margin-top: 0;
@@ -984,6 +1000,11 @@ footer .copyright p {
   font-size: 14px;
   margin-top: 4px;
 }
+=======
+  width: 100%;
+  margin-top: 0;
+}
+>>>>>>> 47ea94820546b481741ab0608df863b923204cb0
 
 /*
 * Ie fixes
