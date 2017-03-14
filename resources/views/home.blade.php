@@ -46,7 +46,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/1.png') }}" alt="1.png">
 														</span>
-                                                    <input type="date" id="time" placeholder="00 : 00">
+                                                    <input name="date" type="date" id="time" placeholder="00 : 00">
                                                 </div>
                                             </div>
 
@@ -56,7 +56,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/2.png') }}" alt="2.png">
 														</span>
-                                                    <input type="text" id="name" placeholder="Name">
+                                                    <input name="name" type="text" id="name" placeholder="Name">
                                                 </div>
                                             </div>
 
@@ -66,7 +66,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/3.png') }}" alt="3.png">
 														</span>
-                                                    <input type="date" id="exp">
+                                                    <input name="expected" type="date" id="exp">
                                                 </div>
                                             </div>
 
@@ -76,7 +76,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/4.png') }}" alt="4.png">
 														</span>
-                                                    <input type="text" id="title" placeholder="title of the problem">
+                                                    <input name="title" type="text" id="title" placeholder="title of the problem">
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/5.png') }}" alt="5.png">
 														</span>
-                                                    <input type="text" id="location" placeholder="Type address">
+                                                    <input name="address" type="text" id="location" placeholder="Type address">
                                                 </div>
                                             </div>
 
@@ -100,7 +100,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/6.png') }}" alt="6.png">
 														</span>
-                                                    <input type="text" id="mail" placeholder="Your e-mail">
+                                                    <input name="email" type="text" id="mail" placeholder="Your e-mail">
                                                 </div>
                                             </div>
 
@@ -110,7 +110,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/7.png') }}" alt="7.png">
 														</span>
-                                                    <input type="text" id="impact" placeholder="Priority">
+                                                    <input name="priority" type="text" id="impact" placeholder="Priority">
                                                 </div>
                                             </div>
 
@@ -120,7 +120,7 @@
 														<span class="inp-left-ico">
 															<img src="{{ asset('images/icons/8.png') }}" alt="8.png">
 														</span>
-                                                    <input type="text" id="categ" placeholder="Hardware">
+                                                    <input name="category" type="text" id="categ" placeholder="Hardware">
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
 													<span class="inp-left-ico txt-area">
 														<img src="{{ asset('images/icons/9.png') }}" alt="9.png">
 													</span>
-                                                <textarea id="desc" placeholder="Type..."></textarea>
+                                                <textarea name="description" id="desc" placeholder="Type..."></textarea>
                                             </div>
                                         </div>
 
@@ -143,7 +143,7 @@
 													<span class="inp-left-ico txt-area">
 														<img src="{{ asset('images/icons/10.png') }}" alt="10.png">
 													</span>
-                                                <input type="file" id="attach" style="min-height: 137px; cursor: pointer;">
+                                                <input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">
                                             </div>
                                         </div>
                                     </div><!-- 3 end -->

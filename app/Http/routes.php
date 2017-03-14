@@ -25,7 +25,12 @@ Route::group(['namespace' => 'User\Auth', 'prefix' => 'user'], function () {
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::post('order/new', 'OrderController@create');
+    Route::post('order/new', 'OrderController@postCreate');
+    Route::get('order/new', 'OrderController@getCreate');
+});
+
+Route::get('test', function (){
+    dd(\Illuminate\Support\Facades\Session::forget('url'));
 });
 
 
