@@ -17,10 +17,6 @@ class OrderController extends Controller
     public function __construct(Request $request)
     {
 
-        if ($request->isMethod('post') && $request->path() == 'user/order/new') {
-            Session::set('request', $request);
-        }
-
         $this->middleware('auth:user');
 
         if(Auth::guard('user')->check()){
@@ -30,15 +26,16 @@ class OrderController extends Controller
     
     public function postCreate(Request $request)
     {
+        dd($request->all());
         $this->create($request);
     }
 
     public function getCreate()
     {
-        dd('get');
 
-        if(Session::has('request'))
-            $this->create(Session::get('request'));
+
+        if(Session::has('request_obj'))
+            $this->create(Session::get('request_obj'));
         else
             return redirect()->back();
 
@@ -67,8 +64,8 @@ class OrderController extends Controller
     }
 
     public function clearRequestSession(){
-        if(Session::has('request'))
-            Session::forget('request');
+        if(Session::has('request_obj'))
+            Session::forget('request_obj');
 
     }
 }

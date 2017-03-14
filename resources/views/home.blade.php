@@ -26,16 +26,19 @@
                                 </div>
                                 <div>
                                     @if(Auth::guard('user')->check())
-
+                                        <a href="{{ url('user/auth') }}">
+                                            <img src="{{ asset('images/login.png') }}" alt="logout.png">
+                                            <span>logout</span>
+                                        </a>
                                     @else
-                                    <a href="{{ url('user/auth') }}">
-                                        <img src="{{ asset('images/logout.png') }}" alt="logout.png">
-                                    </a>
+                                        <a href="{{ url('user/auth') }}">
+                                            <img src="{{ asset('images/logout.png') }}" alt="logout.png">
+                                        </a>
                                     @endif
                                 </div>
                             </div><!-- header top end-->
                             <h1 id="order">Request technical service</h1>
-                            <form action="{{ url('user/order/new') }}" method="post">
+                            <form action="{{ url('user/order/new') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="information-main"><!-- information-main -->
                                     <div class="col-sm-4">

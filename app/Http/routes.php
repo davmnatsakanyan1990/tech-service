@@ -25,7 +25,10 @@ Route::group(['namespace' => 'User\Auth', 'prefix' => 'user'], function () {
 });
 
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
-    Route::post('order/new', 'OrderController@postCreate');
-    Route::get('order/new', 'OrderController@getCreate');
+    Route::post('order/new', ['uses' => 'OrderController@postCreate', 'as' => 'order']);
+//    Route::get('order/new', 'OrderController@getCreate');
+//    Route::get('order/new', function(){
+//        dd('get');
+//    });
 });
 
