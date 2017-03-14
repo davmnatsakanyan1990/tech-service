@@ -23,6 +23,16 @@
 	#ww-do-section a{
 		margin-bottom: 40px;
 	} 
+	.work-o-filter{
+		form{
+			ul{
+				li{
+					width: 100%;
+					padding: 5px 10px;
+				}
+			}
+		}
+	} 
 } 
 
 @media screen and (max-width: 480px){

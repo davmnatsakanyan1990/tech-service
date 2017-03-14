@@ -22,3 +22,7 @@ Route::group(['namespace' => 'User\Auth', 'prefix' => 'user'], function () {
 Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::post('order/new', 'OrderController@create');
 });
+
+Route::get('test', function(){
+    return view('user.layouts.app');
+});
