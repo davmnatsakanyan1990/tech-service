@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     protected  $user;
+    
     public function __construct(Request $request)
     {
 
@@ -29,7 +30,6 @@ class OrderController extends Controller
     
     public function postCreate(Request $request)
     {
-        dd('post');
         $this->create($request);
     }
 
@@ -63,7 +63,7 @@ class OrderController extends Controller
 
         $this->clearRequestSession();
 
-//        return redirect('/');
+        dd('ordered');
     }
 
     public function clearRequestSession(){

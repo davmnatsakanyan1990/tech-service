@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="row login-row">
-            @if(old('type') && old('type') == 'login')
+            @if(old('type') != 'register')
                 @if(count($errors) > 0)
                     @foreach($errors->all() as $error)
                         <p>{{ $error }}</p>
@@ -49,8 +49,8 @@
                     </div>
                     <div class="inputs-gr">
                         <div class="input-item">
-                            <input name="username" type="name" id="login-name" placeholder="username">
-                            <label for="login-name"><img src="{{ asset('images/icons/user.png') }}" alt="user.png"></label>
+                            <input name="email" type="email" id="login-email" placeholder="e-mail">
+                            <label for="login-email"><img src="{{ asset('images/icons/user.png') }}" alt="user.png"></label>
                         </div>
                         <p class="fillin-err">Lorem ipsum dolor sit.</p>
 
@@ -81,7 +81,17 @@
                         </div>
                     </div>
                 </div>
-
+            </form>
+                @if(old('type') && old('type') == 'register')
+                    @if(count($errors) > 0)
+                        @foreach($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    @endif
+                @endif
+            <form action="{{ url('user/register') }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="type" value="register">
                 <div class="col-sm-6">
                     <div class="signup-here">
                         <img src="{{ asset('images/sign-up.png') }}" alt="s-up">
@@ -93,27 +103,27 @@
                             <div class="name-sername clearfix">
 
                                 <div class="input-item">
-                                    <input type="text" placeholder="first name">
-                                </div>  
+                                    <input name="first_name" value="{{ old('first_name') }}" type="text" placeholder="first name">
+                                </div>
 
                                 <div class="input-item">
-                                    <input type="text" placeholder="last name">
-                                </div> 
+                                    <input name="last_name" value="{{ old('last_name') }}" type="text" placeholder="last name">
+                                </div>
                                 <p class="fillin-err">Lorem ipsum dolor sit.</p>
                             </div>
                         </div>
                         <div class="input-item">
-                            <input type="mail" placeholder="e-mail" id="y-mail">
+                            <input name="email" value="{{ old('email') }}" type="email" placeholder="e-mail" id="y-mail">
                             <label for="y-mail"><img src="{{ asset('images/icons/letter.png') }}" alt="letter.png"></label>
                         </div>
                         <p class="fillin-err">Lorem ipsum dolor sit.</p>
                         <div class="input-item">
-                            <input type="password" id="regpass1" placeholder="password">
+                            <input name="password" type="password" id="regpass1" placeholder="password">
                             <label for="regpass1"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
                         <p class="fillin-err">Lorem ipsum dolor sit.</p>
                         <div class="input-item">
-                            <input type="password" id="regpass2" placeholder="confirm password">
+                            <input name="password_confirmation" type="password" id="regpass2" placeholder="confirm password">
                             <label for="regpass2"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
                         <p class="fillin-err">Lorem ipsum dolor sit.</p>
