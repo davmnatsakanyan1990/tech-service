@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('fonts/font.css') }}">
     <link rel="stylesheet" href="{{ asset('slick-1.6.0/slick/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('slick-1.6.0/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/demolink.css') }}">
 </head>
 <body>
@@ -26,10 +27,11 @@
                                 </div>
                                 <div>
                                     @if(Auth::guard('user')->check())
-                                        <a href="{{ url('user/auth') }}">
-                                            <img src="{{ asset('images/login.png') }}" alt="logout.png">
-                                            <span>logout</span>
-                                        </a>
+                                        <p class="text-center">
+                                            <img src="{{ asset('images/account-ico.png') }}" alt="logout.png">
+                                        <a href="{{ url('user/auth') }}" style="color: #fff; display: block;">Logout <i class="fa fa-sign-out"></i></a>
+
+                                        </p>
                                     @else
                                         <a href="{{ url('user/auth') }}">
                                             <img src="{{ asset('images/logout.png') }}" alt="logout.png">

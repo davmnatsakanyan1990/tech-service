@@ -32,3 +32,6 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
 //    });
 });
 
+Route::get('/test', function(){
+    return view('user.layouts.app');
+});
