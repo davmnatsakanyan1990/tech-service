@@ -29,6 +29,9 @@
                     @endif
                 </div>
             </div>
+            <div class="work-header-itile">
+                <h1>Work orders</h1>
+            </div>
         </div>  
     </div>  
     <div class="work-o-filter">
@@ -95,7 +98,7 @@
 
                                 <ul class="list-inline cat-prior-ul-3">
                                     <li><span class="f-span">Images:</span></li>
-                                    <li>
+                                    <li class="li-for-ul">
                                         <ul class="list-inline">
                                             <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
                                             <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
@@ -147,7 +150,7 @@
 
                                  <ul class="list-inline cat-prior-ul-3">
                                      <li><span class="f-span">Images:</span></li>
-                                     <li>
+                                     <li class="li-for-ul">
                                          <ul class="list-inline">
                                              <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
                                              <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
@@ -199,7 +202,8 @@
 
                                 <ul class="list-inline cat-prior-ul-3">
                                     <li><span class="f-span">Images:</span></li>
-                                    <li>
+                                    <li class="li-for-ul">
+
                                         <ul class="list-inline">
                                             <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
                                             <li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>
@@ -214,9 +218,40 @@
                 </div>
             </div>
         </div>
+        <ul class="list-inline collaps-pagination">
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
     </div>
  
-
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="company-name">
+                    <p>
+                        <img src="{{ asset('images/logo.png') }}" class="img-responsive" alt="fe">
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6 text-right">
+                <div class="copyright">
+                    <p>
+                        Company name co. © 2016 Privacy Policy
+                    </p>
+                    <ul class="social-icons">
+                        <li><a href="#"><img src="{{ asset('images/facebook-sm.png') }}" alt="df"></a></li>
+                        <li><a href="#"><img src="{{ asset('images/twitter-sm.png') }}" alt="df"></a></li>
+                        <li><a href="#"><img src="{{ asset('images/insta-sm.png') }}" alt="df"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <!-- jQuery library -->
