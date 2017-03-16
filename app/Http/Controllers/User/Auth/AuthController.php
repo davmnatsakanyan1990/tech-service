@@ -89,6 +89,11 @@ class AuthController extends Controller
 
         return redirect()->intended($this->redirectPath());
     }
+
+    public function registered($request,$user)
+    {
+        return redirect()->intended($this->redirectPath());
+    }
 //    public function intended(){
 //
 //        if ($this->session->has('url.intended.method')) {
