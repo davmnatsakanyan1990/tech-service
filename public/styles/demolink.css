@@ -562,39 +562,9 @@ input::-webkit-inner-spin-button:hover {
 }
 
 .company-name p {
-  font-size: 14px;
-  position: relative;
   padding-top: 15px;
-  padding-left: 10px;
-  border-top: 3px solid #ED644B;
-  border-left: 3px solid #ED644B;
-  display: inline-block;
   min-height: 75px;
   width: 85px;
-  color: #fff;
-  line-height: 22px;
-}
-
-.company-name p:before {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  height: 15px;
-  width: 3px;
-  background: #ED644B;
-  top: 0px;
-  right: 0;
-}
-
-.company-name p:after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  height: 3px;
-  width: 15px;
-  background: #ED644B;
-  bottom: 0;
-  left: 0;
 }
 
 footer {
@@ -1010,24 +980,45 @@ footer .copyright p {
 }
 
 .work-o-filter form ul li input {
+  background: transparent;
+  color: #fff;
   width: 100%;
   border: 1px solid #fff;
   padding: 15px;
 }
 
 .work-o-filter form ul li select {
+  color: #fff;
+  background: transparent;
   padding: 15px;
   border: 1px solid #fff;
   width: 100%;
   padding: 15px;
 }
 
+.work-o-filter form ul li select option {
+  color: #ED644B;
+  background: #fff;
+}
+
 .work-o-filter form ul li input[type="submit"] {
+  color: #ED644B;
+  background: #fff;
+  font-weight: bold;
+  font-size: 19px;
   max-width: 160px;
+}
+
+.work-o-filter form ::-webkit-input-placeholder {
+  color: #fff;
 }
 
 .filt-collaps {
   margin-top: 100px;
+}
+
+.filt-collaps .fancy-collapse-panel {
+  padding-bottom: 100px;
 }
 
 .filt-collaps .fancy-collapse-panel .panel-default {
@@ -1035,6 +1026,7 @@ footer .copyright p {
 }
 
 .filt-collaps .fancy-collapse-panel .panel-default > .panel-heading {
+  margin-top: 35px;
   padding: 0;
 }
 
@@ -1051,7 +1043,8 @@ footer .copyright p {
   content: "\f147";
   position: absolute;
   right: 20px;
-  font-size: 20px;
+  color: #616161;
+  font-size: 32px;
   font-weight: 400;
   top: 50%;
   line-height: 1;
@@ -1060,6 +1053,61 @@ footer .copyright p {
 
 .filt-collaps .fancy-collapse-panel .panel-heading a.collapsed:after {
   content: "\f196";
+}
+
+.filt-collaps .collaps-pagination {
+  padding-bottom: 100px;
+  text-align: right;
+}
+
+.filt-collaps .collaps-pagination li {
+  text-align: center;
+}
+
+.filt-collaps .collaps-pagination li a {
+  text-decoration: none;
+  transition: all 0.3s;
+  margin: 4px;
+  position: relative;
+  min-width: 20px;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ACACAC;
+}
+
+.filt-collaps .collaps-pagination li a:before {
+  content: "";
+  transition: all 0.3s cubic-bezier(1, -0.53, 0.405, 1.425);
+  display: inline-block;
+  position: absolute;
+  left: 45%;
+  top: 45%;
+  border-radius: 100%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 0, 0, 0.32);
+}
+
+.filt-collaps .collaps-pagination li a:hover:before {
+  transition: all 0.4s;
+  box-shadow: 0px 0px 8px 2px;
+  background: rgba(255, 0, 0, 0.32);
+  z-index: 99;
+  left: -8px;
+  top: -7px;
+  width: 35px;
+  height: 35px;
+}
+
+.filt-collaps .collaps-pagination li a.active:before {
+  box-shadow: 0px 0px 8px 2px;
+  background: rgba(255, 0, 0, 0.32);
+  z-index: 99;
+  left: -8px;
+  top: -7px;
+  width: 35px;
+  height: 35px;
 }
 
 .colap-date {
@@ -1072,6 +1120,7 @@ footer .copyright p {
 }
 
 .work-order-collapse {
+  position: relative;
   display: inline-block;
   padding-left: 35px;
   padding-top: 12px;
@@ -1086,6 +1135,38 @@ footer .copyright p {
   vertical-align: middle;
 }
 
+.work-order-collapse:before {
+  content: "";
+  position: absolute;
+  transition: all 0.3s;
+  width: 2px;
+  height: 0;
+  background: #ED644B;
+  left: -2px;
+  top: 0;
+}
+
+.work-order .work-header-itile {
+  display: table;
+  margin-left: -15px;
+  padding-left: 20px;
+  margin-top: 100px;
+  min-height: 100px;
+  border-left: 3px solid #ED644B;
+}
+
+.work-order h1 {
+  display: table-cell;
+  vertical-align: middle;
+  color: #fff;
+  font-weight: bold;
+  font-size: 38px;
+}
+
+.panel-title:hover .work-order-collapse:before {
+  height: 100%;
+}
+
 .f-span {
   min-width: 125px;
   display: inline-block;
@@ -1097,10 +1178,23 @@ footer .copyright p {
 .g-span {
   display: inline-block;
   padding-left: 70px;
+  font-weight: lighter;
+  font-size: 18px;
+  color: #616161;
 }
 
 .work-ord-panel-body {
   border-top: none !important;
+}
+
+.work-ord-panel-body .li-for-ul {
+  display: inline-block;
+  padding-left: 70px;
+}
+
+.work-ord-panel-body .li-for-ul ul li {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .work-ord-panel-body ul {
@@ -1137,6 +1231,36 @@ footer .copyright p {
   }
 }
 
+@media screen and (max-width: 992px) {
+  .work-ord-panel-body .li-for-ul {
+    padding-left: 0;
+  }
+  .work-ord-panel-body .li-for-ul ul {
+    margin-top: 0;
+  }
+  .work-ord-panel-body .li-for-ul ul li {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+  }
+  .g-span {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cat-prior-ul-2 li:nth-child(2) {
+    line-height: 21px;
+    margin-top: 10px;
+  }
+  .logo-div {
+    padding-left: 15px;
+  }
+  .for-user-icon {
+    padding-right: 15px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .testimon-cont .testimon-right {
     margin-top: 35px;
@@ -1147,6 +1271,9 @@ footer .copyright p {
   .work-o-filter form ul li {
     width: 100%;
     padding: 5px 10px;
+  }
+  .work-ord-panel-body .cat-prior-ul li {
+    margin-top: 15px;
   }
 }
 
@@ -1169,6 +1296,36 @@ footer .copyright p {
     width: 100%;
     margin-top: 10px;
     display: block;
+  }
+  .colap-date {
+    min-width: inherit;
+  }
+  .work-ord-panel-body .li-for-ul ul {
+    text-align: center;
+  }
+  .work-order-collapse {
+    font-size: 16px;
+  }
+  .filt-collaps {
+    margin-top: 15px;
+  }
+  .filt-collaps .fancy-collapse-panel {
+    padding-bottom: 20px;
+  }
+  .filt-collaps .fancy-collapse-panel .panel-heading a:after {
+    font-size: 28px;
+  }
+  .filt-collaps .collaps-pagination {
+    padding-bottom: 40px;
+  }
+  .work-o-filter form ul li input[type="submit"] {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .f-span {
+    min-width: 85px;
   }
 }
 

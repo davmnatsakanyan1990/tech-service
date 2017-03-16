@@ -382,38 +382,10 @@ input::-webkit-inner-spin-button{
 
 .company-name{
 	display: inline-block;
-	p{
-		font-size: 14px;
-		position: relative;
-	    padding-top: 15px;
-	    padding-left: 10px;
-	    border-top: 3px solid #ED644B;
-	    border-left: 3px solid #ED644B;
-	    display: inline-block;
-	    min-height: 75px;
-	    width: 85px;
-	    color: #fff;
-	    line-height: 22px;
-	    &:before{
-	    	content: '';
-	    	position: absolute;
-	    	display: inline-block;
-	    	height: 15px;
-	    	width: 3px;
-	    	background: #ED644B;
-	    	top: 0px;
-	    	right: 0;
-	    }
-	    &:after{
-	    	content: '';
-	    	position: absolute;
-	    	display: inline-block;
-	    	height: 3px;
-	    	width: 15px;
-	    	background: #ED644B;
-	    	bottom: 0;
-	    	left: 0;
-	    }
+	p{ 
+		padding-top: 15px;
+    	min-height: 75px;
+    	width: 85px;
 	}
 }
 
@@ -789,29 +761,46 @@ footer{
 				padding: 20px 10px;
 				width: calc(100%/5);
 				input{
+					background: transparent;
+					color: #fff;
 					width: 100%;
 					border: 1px solid #fff;
 					padding: 15px;
 				}
 				select{
+					color: #fff;
+					background: transparent;
 					padding: 15px;
 					border: 1px solid #fff;
 					width: 100%;
 					padding: 15px;
+					option{
+						color: $main-red;
+						background: #fff;
+					}
 				}
 				input[type="submit"]{
+					color: $main-red;
+					background: #fff;
+					font-weight: bold;
+					font-size: 19px;
 					max-width: 160px;
 				}
 			}
+		}
+		::-webkit-input-placeholder{
+			color: #fff;
 		}
 	}
 }
 .filt-collaps{
 	margin-top: 100px;
 	.fancy-collapse-panel{
+		padding-bottom: 100px;
 		.panel-default{
 			border: none;
 			& > .panel-heading{
+				margin-top: 35px;
 				padding: 0;
 			}
 		}
@@ -827,7 +816,8 @@ footer{
 					content: "\f147";
 					position: absolute;
 					right: 20px;
-					font-size: 20px;
+					color: #616161;
+					font-size: 32px;
 					font-weight: 400;
 					top: 50%;
 					line-height: 1;
@@ -839,10 +829,62 @@ footer{
 			}
 		}
 	}
+	.collaps-pagination{
+		padding-bottom: 100px;
+		text-align: right;
+		li{
+			text-align: center;
+			a{
+				text-decoration: none;
+				transition: all 0.3s;
+				margin: 4px;
+				position: relative;
+				min-width: 20px;
+				display: inline-block;
+				font-size: 24px;
+				font-weight: bold; 
+				color: #ACACAC;
+				&:before{
+					content: "";
+					transition: all 0.3s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+					display: inline-block;
+					position: absolute;
+					left: 45%;
+					top: 45%;
+					border-radius: 100%;
+					width: 0;
+					height: 0;
+					background: rgba(255, 0, 0, 0.32);
+				}
+				&:hover{
+					&:before{
+						transition: all 0.4s;
+						box-shadow: 0px 0px 8px 2px; 
+						background: rgba(255, 0, 0, 0.32);
+						z-index: 99;
+						left: -8px;
+						top: -7px;
+						width: 35px;
+						height: 35px;
+					}
+				}
+				&.active{
+					&:before{
+						box-shadow: 0px 0px 8px 2px; 
+						background: rgba(255, 0, 0, 0.32);
+						z-index: 99;
+						left: -8px;
+						top: -7px;
+						width: 35px;
+						height: 35px;
+					}
+				}
+			}
+		}
+	}
 }
 
 .colap-date{
-
 	display: inline-block;
 	min-width: 125px;
 	font-size: 15px;
@@ -851,6 +893,7 @@ footer{
 	font-weight: bold;
  }
  .work-order-collapse{
+ 	position: relative;
  	display: inline-block;
  	padding-left: 35px;
  	padding-top: 12px;
@@ -863,23 +906,73 @@ footer{
  	font-weight: bold;
  	border-left: 2px solid #BEBEBE;
  	vertical-align: middle;
- }
+ 	&:before{
+ 		content: "";
+ 		position: absolute;
+ 		transition: all 0.3s;
+ 		width: 2px;
+ 		height: 0;
+ 		background: $main-red;
+ 		left: -2px;
+ 		top: 0;
+ 	}
+}
+
+.work-order{
+	.work-header-itile{
+		display: table;
+		margin-left: -15px;
+		padding-left: 20px;
+		margin-top: 100px;
+		min-height: 100px;
+		border-left: 3px solid $main-red; 
+	}
+	h1{  
+		display: table-cell;
+		vertical-align: middle;
+		color: #fff;
+		font-weight: bold;
+		font-size: 38px;		
+	}
+}
+
+.panel-title{
+	&:hover{
+		.work-order-collapse{
+			&:before{
+				height: 100%;
+			}
+		}
+	}
+}
 
  .f-span{
 	min-width: 125px;
  	display: inline-block;
-
  	color: $main-red;
  	font-weight: bold;
  	font-size: 18px;
 }
 .g-span{
 	display: inline-block;
-	padding-left: 70px;
+    padding-left: 70px;
+    font-weight: lighter;
+    font-size: 18px;
+    color: #616161;
 }
 
 .work-ord-panel-body{
 	border-top: none !important;
+	.li-for-ul{
+		display: inline-block;
+		padding-left: 70px;
+		ul{
+			li{
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+		}
+	}
 
 	ul{
 		margin-top: 40px;
