@@ -29,13 +29,6 @@
             </div>
         </div>
         <div class="row login-row">
-            @if(old('type') != 'register')
-                @if(count($errors) > 0)
-                    @foreach($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                @endif
-            @endif
             <form action="{{ url('user/login') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="type" value="login">
@@ -52,13 +45,17 @@
                             <input name="email" type="email" id="login-email" placeholder="e-mail">
                             <label for="login-email"><img src="{{ asset('images/icons/user.png') }}" alt="user.png"></label>
                         </div>
-                        <p class="fillin-err">Lorem ipsum dolor sit.</p>
+                        @if(old('type') != 'register' && $errors->has('email'))
+                            <p class="fillin-err">{{ $errors->first('email') }}</p>
+                        @endif
 
                         <div class="input-item">
                             <input name="password" type="password" id="log-pass" placeholder="password">
                             <label for="log-pass"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
-                        <p class="fillin-err">Lorem ipsum dolor sit.</p>
+                        @if(old('type') != 'register' && $errors->has('password'))
+                            <p class="fillin-err">{{ $errors->first('password') }}</p>
+                        @endif
 
                         <div class="log-in-button">
                             <button type="submit">Log in</button>
@@ -82,13 +79,7 @@
                     </div>
                 </div>
             </form>
-                @if(old('type') && old('type') == 'register')
-                    @if(count($errors) > 0)
-                        @foreach($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    @endif
-                @endif
+            
             <form action="{{ url('user/register') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="type" value="register">
@@ -106,27 +97,39 @@
                                     <input name="first_name" value="{{ old('first_name') }}" type="text" placeholder="first name">
                                 </div>
 
+
                                 <div class="input-item">
                                     <input name="last_name" value="{{ old('last_name') }}" type="text" placeholder="last name">
                                 </div>
-                                <p class="fillin-err">Lorem ipsum dolor sit.</p>
+                                @if(old('type') == 'register' && $errors->has('first_name'))
+                                    <p class="fillin-err">{{ $errors->first('first_name') }}</p>
+                                @endif
+                                @if(old('type') == 'register' && $errors->has('last_name'))
+                                    <p class="fillin-err">{{ $errors->first('last_name') }}</p>
+                                @endif
+
                             </div>
                         </div>
                         <div class="input-item">
                             <input name="email" value="{{ old('email') }}" type="email" placeholder="e-mail" id="y-mail">
                             <label for="y-mail"><img src="{{ asset('images/icons/letter.png') }}" alt="letter.png"></label>
                         </div>
-                        <p class="fillin-err">Lorem ipsum dolor sit.</p>
+                        @if(old('type') == 'register' && $errors->has('email'))
+                            <p class="fillin-err">{{ $errors->first('email') }}</p>
+                        @endif
+
                         <div class="input-item">
                             <input name="password" type="password" id="regpass1" placeholder="password">
                             <label for="regpass1"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
-                        <p class="fillin-err">Lorem ipsum dolor sit.</p>
+                        @if(old('type') == 'register' && $errors->has('password'))
+                            <p class="fillin-err">{{ $errors->first('password') }}</p>
+                        @endif
+
                         <div class="input-item">
                             <input name="password_confirmation" type="password" id="regpass2" placeholder="confirm password">
                             <label for="regpass2"><img src="{{ asset('images/icons/key.png') }}" alt="key.png"></label>
                         </div>
-                        <p class="fillin-err">Lorem ipsum dolor sit.</p>
                         <button>sign up</button>
                     </div>
                 </div>

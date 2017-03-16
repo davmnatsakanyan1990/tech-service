@@ -65,6 +65,15 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function authenticated($request, $user){
+        return redirect()->guest(route('int'));
+    }
+
+    public function registered($request, $user){
+
+        return redirect($this->redirectPath());
+    }
     /**
      * Show the application auth form.
      *
