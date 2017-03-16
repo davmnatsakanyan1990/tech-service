@@ -29,7 +29,7 @@
                                     @if(Auth::guard('user')->check())
                                         <p class="text-center">
                                             <img src="{{ asset('images/account-ico.png') }}" alt="logout.png">
-                                        <a href="{{ url('user/auth') }}" style="color: #fff; display: block;">Logout <i class="fa fa-sign-out"></i></a>
+                                        <a href="{{ url('user/logout') }}" style="color: #fff; display: block;">Logout <i class="fa fa-sign-out"></i></a>
 
                                         </p>
                                     @else
@@ -40,8 +40,8 @@
                                 </div>
                             </div><!-- header top end-->
                             <h1 id="order">Request technical service</h1>
-                            <form action="{{ url('user/order/new') }}" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                            <form action="{{ url('user/order/new') }}" method="get">
+                                {{--{{ csrf_field() }}--}}
                                 <div class="information-main"><!-- information-main -->
                                     <div class="col-sm-4">
                                         <div class="inps-wrap">
@@ -142,22 +142,22 @@
                                             </div>
                                         </div>
 
-                                        <div class="inp-all-divs">
-                                            <p><label for="attach">Attachments</label></p>
-                                            <div class="inp-plus-span">
-													<span class="inp-left-ico txt-area">
-														<img src="{{ asset('images/icons/10.png') }}" alt="10.png">
-													</span>
-                                                <input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">
-                                            </div>
-                                        </div>
+                                        {{--<div class="inp-all-divs">--}}
+                                            {{--<p><label for="attach">Attachments</label></p>--}}
+                                            {{--<div class="inp-plus-span">--}}
+													{{--<span class="inp-left-ico txt-area">--}}
+														{{--<img src="{{ asset('images/icons/10.png') }}" alt="10.png">--}}
+													{{--</span>--}}
+                                                {{--<input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div><!-- 3 end -->
                                 </div><!-- information-main -->
                                 <div class="form-buttons">
 
                                     <div class="col-sm-6">
                                         <div class="inp-all-divs">
-                                            <button>Work orders</button>
+                                            <button type="button"><a href="{{ url('user/orders') }}"> Work orders</a></button>
                                             <button>Dashboard</button>
                                         </div>
                                     </div>

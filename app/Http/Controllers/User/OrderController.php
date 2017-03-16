@@ -16,7 +16,6 @@ class OrderController extends Controller
     
     public function __construct(Request $request)
     {
-
         $this->middleware('auth:user');
 
         if(Auth::guard('user')->check()){
@@ -24,27 +23,13 @@ class OrderController extends Controller
         }
     }
     
-    public function postCreate(Request $request)
-    {
-        dd($request->all());
-        $this->create($request);
+    public function index(){
+        $orders = Order::where('user_id', $this->user->id)->get();
+        dd($orders);
     }
 
-    public function getCreate()
+    public function create(Request $request)
     {
-
-
-        if(Session::has('request_obj'))
-            $this->create(Session::get('request_obj'));
-        else
-            return redirect()->back();
-
-
-    }
-
-    public function create($request)
-    {
-
         Order::create([
             'user_id' => $this->user->id,
             'name' => $request->name,
@@ -58,14 +43,6 @@ class OrderController extends Controller
             'expected' => $request->expected
         ]);
 
-        $this->clearRequestSession();
-
-        dd('ordered');
-    }
-
-    public function clearRequestSession(){
-        if(Session::has('request_obj'))
-            Session::forget('request_obj');
-
+        return redirect('user/orders')->send();
     }
 }

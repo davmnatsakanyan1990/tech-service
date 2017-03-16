@@ -1,10 +1,18 @@
 <?php
 namespace App\Http\Controllers\User\Auth;
+//use App\Http\Requests\Request;
 use App\User;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Session\Store as SessionStore;
+use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use GuzzleHttp\Post\PostFile;
+
 class AuthController extends Controller
 {
     /*
@@ -26,14 +34,21 @@ class AuthController extends Controller
     protected $redirectTo = '/';
     protected $guard = 'user';
     protected $redirectAfterLogout = 'user/auth';
+
+    protected $session;
+    protected $method;
+    protected $input;
+    protected $path;
+    protected $headers;
+
     /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
+     * AuthController constructor.
+     * @param SessionStore $session
      */
-    public function __construct()
+    public function __construct(SessionStore $session)
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->session  = $session;
     }
     /**
      * Get a validator for an incoming registration request.
@@ -66,14 +81,48 @@ class AuthController extends Controller
         ]);
     }
 
-    public function authenticated($request, $user){
-        return redirect()->guest(route('int'));
-    }
+    public function authenticated($request,$user)
+    {
+//        if ($this->session->get('url.intended.method') == "POST") {
+//            $this->intended();
+//        }
 
-    public function registered($request, $user){
-
-        return redirect($this->redirectPath());
+        return redirect()->intended($this->redirectPath());
     }
+//    public function intended(){
+//
+//        if ($this->session->has('url.intended.method')) {
+//            $this->method = $this->session->pull('url.intended.method');
+//        }
+//
+//        if ($this->session->has('url.intended.input')) {
+//            $this->input = $this->session->pull('url.intended.input');
+//            $this->input['user_id'] = Auth::guard('user')->user()->id;
+//        }
+//
+//        if ($this->session->has('url.intended.headers')) {
+//            $this->headers = $this->session->pull('url.intended.headers');
+//        }
+//        
+//        $this->path = $this->session->pull('url.intended.path');
+//
+//        $ch = curl_init();
+//
+//        curl_setopt($ch, CURLOPT_URL, "http://tech_service.dev/order/new");
+//
+//        curl_setopt($ch, CURLOPT_POST, true);
+//
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->input);
+//
+//
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//
+//        curl_exec($ch);
+//
+//        return redirect('orders')->send();
+//
+//    }
+
     /**
      * Show the application auth form.
      *
