@@ -22,9 +22,26 @@ class OrderController extends Controller
             $this->user = Auth::guard('user')->user();
         }
     }
-    
-    public function index(){
-        $orders = Order::where('user_id', $this->user->id)->get();
+
+    /**
+     * Show user orders list
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Request $request){
+
+        $orders = Order::where('user_id', $this->user->id);
+
+        // filter by date-from
+        if($request->has('from'))
+            $orders = $orders->where('created_at', '>=', $request->from);
+
+        // filter by date-to
+        if($request->has('to'))
+            $orders = $orders->where('created_at', '<=', $request->to);
+
+        $orders = $orders->get();
         
         return view('user.orders', compact('orders'));
     }

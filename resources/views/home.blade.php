@@ -23,7 +23,9 @@
                         <div class="inner-cont"><!-- Inner cont -->
                             <div class="header-top clearfix"><!-- header top -->
                                 <div class="logo-div">
-                                    <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                                    <a href="{{ url('/') }}">
+                                        <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                                    </a>
                                 </div>
                                 <div>
                                     @if(Auth::guard('user')->check())
@@ -40,8 +42,8 @@
                                 </div>
                             </div><!-- header top end-->
                             <h1 id="order">Request technical service</h1>
-                            <form action="{{ url('user/order/new') }}" method="get">
-                                {{--{{ csrf_field() }}--}}
+                            <form action="{{ url('user/order/new') }}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
                                 <div class="information-main"><!-- information-main -->
                                     <div class="col-sm-4">
                                         <div class="inps-wrap">
@@ -142,14 +144,14 @@
                                             </div>
                                         </div>
 
-                                        {{--<div class="inp-all-divs">--}}
-                                            {{--<p><label for="attach">Attachments</label></p>--}}
-                                            {{--<div class="inp-plus-span">--}}
-													{{--<span class="inp-left-ico txt-area">--}}
-														{{--<img src="{{ asset('images/icons/10.png') }}" alt="10.png">--}}
-													{{--</span>--}}
-                                                {{--<input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">--}}
-                                            {{--</div>--}}
+                                        <div class="inp-all-divs">
+                                            <p><label for="attach">Attachments</label></p>
+                                            <div class="inp-plus-span">
+													<span class="inp-left-ico txt-area">
+														<img src="{{ asset('images/icons/10.png') }}" alt="10.png">
+													</span>
+                                                <input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">
+                                            </div>
                                         {{--</div>--}}
                                     </div><!-- 3 end -->
                                 </div><!-- information-main -->

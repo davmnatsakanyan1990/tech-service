@@ -18,11 +18,13 @@
     <div class="container"><!-- header bg -->
         <div class="row">
             <div class="logo-div">
-                <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                <a href="{{ url('/') }}">
+                    <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                </a>
             </div>
             <div class="for-user-icon">
                 @if(Auth::guard('user')->check())
-                    
+
                 @else
                     <a href="{{ url('user/auth') }}">
                         <img src="{{ asset('images/account-ico.png') }}" alt="logout.png">
@@ -35,13 +37,13 @@
         </div>
     </div>
 </div>
-<div class="work-o-filter">
+<div class="work-o-filter" id="form">
     <div class="container">
         <div class="row">
-            <form action="#">
+            <form action="{{ url('user/orders').'#form' }}" method="get">
                 <ul class="clearfix">
-                    <li><input type="date" name="from"></li>
-                    <li><input type="date" name="to"></li>
+                    <li><input type="date" name="from" value="{{ request()->has('from') ? request('from') : '' }}"></li>
+                    <li><input type="date" name="to" value="{{ request()->has('to') ? request('to') : '' }}"></li>
                     {{--<li><input type="text" placeholder="Priority"></li>--}}
                     {{--<li><select name="f-sel" id="">--}}
                             {{--<option value="1">option 1</option>--}}
@@ -50,7 +52,8 @@
                         {{--</select>--}}
                     {{--</li>--}}
                     {{--<li><input type="text" placeholder="Title"></li>--}}
-                    <li><input type="submit" value="Search"></li>
+                    <li><input type="submit" value="Filter"></li>
+                    <li><a href="{{ url('user/orders').'#form' }}">Clear Filter</a> </li>
                 </ul>
             </form>
         </div>

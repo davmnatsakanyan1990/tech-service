@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Session\Store as SessionStore;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\Post\PostFile;
 
 class AuthController extends Controller
 {
@@ -35,7 +34,7 @@ class AuthController extends Controller
     protected $guard = 'user';
     protected $redirectAfterLogout = 'user/auth';
 
-//    protected $session;
+    protected $session;
     protected $method;
     protected $input;
     protected $path;
@@ -45,10 +44,10 @@ class AuthController extends Controller
      * AuthController constructor.
      * @param SessionStore $session
      */
-    public function __construct()
+    public function __construct(SessionStore $session)
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-//        $this->session  = $session;
+        $this->session  = $session;
     }
     /**
      * Get a validator for an incoming registration request.
@@ -81,52 +80,57 @@ class AuthController extends Controller
         ]);
     }
 
-//    public function authenticated($request,$user)
-//    {
-////        if ($this->session->get('url.intended.method') == "POST") {
-////            $this->intended();
-////        }
-//
-//        return redirect()->intended($this->redirectPath());
-//    }
+    public function authenticated($request,$user)
+    {
+        if ($this->session->get('url.intended.method') == "POST") {
+            $this->intended();
+        }
+
+        return redirect()->intended($this->redirectPath());
+    }
 
     public function registered($request,$user)
     {
         return redirect()->intended($this->redirectPath());
     }
-//    public function intended(){
-//
-//        if ($this->session->has('url.intended.method')) {
-//            $this->method = $this->session->pull('url.intended.method');
-//        }
-//
-//        if ($this->session->has('url.intended.input')) {
-//            $this->input = $this->session->pull('url.intended.input');
-//            $this->input['user_id'] = Auth::guard('user')->user()->id;
-//        }
-//
-//        if ($this->session->has('url.intended.headers')) {
-//            $this->headers = $this->session->pull('url.intended.headers');
-//        }
-//        
-//        $this->path = $this->session->pull('url.intended.path');
-//
-//        $ch = curl_init();
-//
-//        curl_setopt($ch, CURLOPT_URL, "http://tech_service.dev/order/new");
-//
-//        curl_setopt($ch, CURLOPT_POST, true);
-//
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->input);
-//
-//
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//
-//        curl_exec($ch);
-//
-//        return redirect('orders')->send();
-//
-//    }
+    public function intended(){
+        $path = $this->session->forget('url.intended.path');
+        if ($this->session->has('url.intended.method')) {
+            $this->method = $this->session->pull('url.intended.method');
+        }
+
+        if ($this->session->has('url.intended.input')) {
+            $file = $this->session->get('url.intended.input.file');
+            $this->input = $this->session->pull('url.intended.input');
+            $this->input['file'] = $file;
+            $this->input['user_id'] = Auth::guard('user')->user()->id;
+        }
+
+        if ($this->session->has('url.intended.headers')) {
+            $this->headers = $this->session->pull('url.intended.headers');
+        }
+
+
+        $headers = array("Content-Type:multipart/form-data");
+
+        $options = array(
+            CURLOPT_URL => url('order/new'),
+            CURLOPT_HEADER => true,
+            CURLOPT_POST => 1,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => $this->input,
+            CURLOPT_RETURNTRANSFER => true
+        ); 
+
+        $ch = curl_init();
+
+        curl_setopt_array($ch, $options);
+
+        curl_exec($ch);
+
+        $this->redirectTo = 'user/orders';
+
+    }
 
     /**
      * Show the application auth form.

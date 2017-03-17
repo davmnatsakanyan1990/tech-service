@@ -20,7 +20,9 @@
             <div class="col-sm-12">
                 <div class="header-top clearfix"><!-- header top -->
                     <div class="logo-div">
-                        <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                        <a href="{{ url('/') }}">
+                            <img class="img-responsive" src="{{ asset('images/logo.png') }}" alt="Logo">
+                        </a>
                     </div>
                     <div>
 
@@ -62,8 +64,8 @@
                         </div>
 
                         <div class="logedin">
-                            <label for="logedin">
-                                <input type="checkbox" id="logedin"> keep me logged in
+                            <label for="remember">
+                                <input type="checkbox" id="remember" name="remember"> keep me logged in
                             </label>
                             <a href="#" title="click to reset your password">Forgot your password?</a>
                             <p>... Or login width :</p>
