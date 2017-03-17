@@ -25,7 +25,8 @@ class OrderController extends Controller
     
     public function index(){
         $orders = Order::where('user_id', $this->user->id)->get();
-        dd($orders);
+        
+        return view('user.orders', compact('orders'));
     }
 
     public function create(Request $request)

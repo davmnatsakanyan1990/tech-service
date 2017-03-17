@@ -28,7 +28,3 @@ Route::group(['namespace' => 'User', 'prefix' => 'user'], function () {
     Route::get('order/new', 'OrderController@create');
     Route::get('orders', 'OrderController@index');
 });
-
-Route::get('/user/orders', function(){
-    return view('user.layouts.app');
-});

@@ -35,7 +35,7 @@ class AuthController extends Controller
     protected $guard = 'user';
     protected $redirectAfterLogout = 'user/auth';
 
-    protected $session;
+//    protected $session;
     protected $method;
     protected $input;
     protected $path;
@@ -45,10 +45,10 @@ class AuthController extends Controller
      * AuthController constructor.
      * @param SessionStore $session
      */
-    public function __construct(SessionStore $session)
+    public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-        $this->session  = $session;
+//        $this->session  = $session;
     }
     /**
      * Get a validator for an incoming registration request.
@@ -81,14 +81,14 @@ class AuthController extends Controller
         ]);
     }
 
-    public function authenticated($request,$user)
-    {
-//        if ($this->session->get('url.intended.method') == "POST") {
-//            $this->intended();
-//        }
-
-        return redirect()->intended($this->redirectPath());
-    }
+//    public function authenticated($request,$user)
+//    {
+////        if ($this->session->get('url.intended.method') == "POST") {
+////            $this->intended();
+////        }
+//
+//        return redirect()->intended($this->redirectPath());
+//    }
 
     public function registered($request,$user)
     {
