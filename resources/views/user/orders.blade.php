@@ -102,16 +102,16 @@
                                 </li>
                             </ul>
 
-                            {{--<ul class="list-inline cat-prior-ul-3">--}}
-                                {{--<li><span class="f-span">Images:</span></li>--}}
-                                {{--<li class="li-for-ul">--}}
-                                    {{--<ul class="list-inline">--}}
-                                        {{--<li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>--}}
-                                        {{--<li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>--}}
-                                        {{--<li><img class="img-responsive" src="{{ asset('images/158.png') }}" alt="nk1"></li>--}}
-                                    {{--</ul>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
+                            <ul class="list-inline cat-prior-ul-3">
+                                <li><span class="f-span">Images:</span></li>
+                                <li class="li-for-ul">
+                                    <ul class="list-inline">
+                                        @foreach($order->images as $image)
+                                        <li><img width="200" height="100" class="img-responsive" src="{{ asset('images/uploads/orders/'.$image->name) }}" alt="nk1"></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            </ul>
 
                         </div>
                     </div>

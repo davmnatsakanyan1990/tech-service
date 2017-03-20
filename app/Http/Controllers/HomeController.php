@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,9 +19,10 @@ class HomeController extends Controller
         return view('home');
     }
     
-    public function makeOrder(Request $request){
+    public function makeOrder(Request $request)
+    {
 
-        Order::create([
+        $order = Order::create([
             'user_id' => $request->user_id,
             'name' => $request->name,
             'email' => $request->email,
@@ -32,21 +34,36 @@ class HomeController extends Controller
             'date' => $request->date,
             'expected' => $request->expected
         ]);
-        
-        $file_name = $this->fileUpload($request);
+
+        $files = json_decode($request->file);
+
+        $image_data = [];
+
+        foreach ($files as $k => $file){
+            $data = [];
+            $file_name = $this->fileUpload($file, $k, $order->id);
+
+            $data['name'] = $file_name;
+            $data['imageable_type'] = 'orders';
+            $data['imageable_id'] = $order->id;
+
+            array_push($image_data, $data);
+        }
+
+        DB::table('images')->insert($image_data);
         
     }
     
-    public function fileUpload($request){
-        $file=$request->file;
-        list($type, $file) = explode(';', $file);
-        list(, $file)      = explode(',', $file);
+    public function fileUpload($f, $k, $order_id){
+        
+        list($type, $f) = explode(';', $f);
+        list(, $f)      = explode(',', $f);
 
         $ext = explode('/', $type)[1];
 
-        $file = base64_decode($file);
+        $file = base64_decode($f);
 
-        $file_name = time().'.'.$ext;
+        $file_name = time().'_'.$k.'_'.$order_id.'.'.$ext;
         $new  = fopen($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/orders/'.$file_name,'w+');
 
         fwrite($new, $file);

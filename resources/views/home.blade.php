@@ -150,9 +150,9 @@
 													<span class="inp-left-ico txt-area">
 														<img src="{{ asset('images/icons/10.png') }}" alt="10.png">
 													</span>
-                                                <input name="file" type="file" id="attach" style="min-height: 137px; cursor: pointer;">
+                                                <input name="file[]" type="file" id="attach" style="min-height: 137px; cursor: pointer;" multiple>
                                             </div>
-                                        {{--</div>--}}
+                                        </div>
                                     </div><!-- 3 end -->
                                 </div><!-- information-main -->
                                 <div class="form-buttons">

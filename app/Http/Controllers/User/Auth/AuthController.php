@@ -1,16 +1,13 @@
 <?php
 namespace App\Http\Controllers\User\Auth;
-//use App\Http\Requests\Request;
+
 use App\User;
-use Exception;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Session\Store as SessionStore;
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
@@ -94,22 +91,18 @@ class AuthController extends Controller
         return redirect()->intended($this->redirectPath());
     }
     public function intended(){
-        $path = $this->session->forget('url.intended.path');
+        $this->session->forget('url.intended.path');
+        
         if ($this->session->has('url.intended.method')) {
             $this->method = $this->session->pull('url.intended.method');
         }
 
         if ($this->session->has('url.intended.input')) {
-            $file = $this->session->get('url.intended.input.file');
+            $files = $this->session->get('url.intended.input.file');
             $this->input = $this->session->pull('url.intended.input');
-            $this->input['file'] = $file;
+            $this->input['file'] = json_encode($files);
             $this->input['user_id'] = Auth::guard('user')->user()->id;
         }
-
-        if ($this->session->has('url.intended.headers')) {
-            $this->headers = $this->session->pull('url.intended.headers');
-        }
-
 
         $headers = array("Content-Type:multipart/form-data");
 
